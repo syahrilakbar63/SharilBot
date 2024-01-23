@@ -32,7 +32,7 @@ const rl = readline.createInterface({
 
 const handleUserInput = async (userInput) => {
   if (!userInput.trim()) {
-    console.log('Maaf, pesan tidak boleh kosong.');
+    console.log('\x1b[31mMaaf, pesan tidak boleh kosong.\x1b[0m');
     getUserInput();
     return;
   }
@@ -50,16 +50,17 @@ const handleUserInput = async (userInput) => {
     chatHistory.push({ role: 'user', parts: [{ text: userInput }] });
     chatHistory.push({ role: 'model', parts: [{ text: response.text() }] });
 
-    console.log(`SharilBot: ${response.text()}\n`);
+    console.log('\x1b[36mSharilBot:\x1b[0m', response.text());
+    console.log();
   } catch (error) {
-    console.error('Terjadi kesalahan dalam mendapatkan respons dari model:', error.message);
+    console.error('\x1b[31mTerjadi kesalahan dalam mendapatkan respons dari model:\x1b[0m', error.message);
   }
 
   getUserInput();
 };
 
 const getUserInput = () => {
-  rl.question('Anda: ', (userInput) => {
+  rl.question('\x1b[33mAnda:\x1b[0m ', (userInput) => {
     if (userInput.toLowerCase() === 'exit') {
       rl.close();
     } else {
@@ -68,5 +69,5 @@ const getUserInput = () => {
   });
 };
 
-console.log('Selamat datang di SharilBot!\n');
+console.log('\x1b[32mSelamat datang di SharilBot!\x1b[0m\n');
 getUserInput();
