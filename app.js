@@ -11,8 +11,8 @@ const genAI = new GoogleGenerativeAI(API_KEY);
 const model = genAI.getGenerativeModel({ model: MODEL_NAME });
 
 const generationConfig = {
-  temperature: 0.9,
-  topK: 1,
+  temperature: 0.5,
+  topK: 20,
   topP: 1,
   maxOutputTokens: 3000,
 };
